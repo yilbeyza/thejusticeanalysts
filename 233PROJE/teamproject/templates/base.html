@@ -1,9 +1,21 @@
-<!DOCTYPE html>
+
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
 <header>
-    <a href="{% url 'homepage' %}"> Home Page </a> | <a href="{% url 'ContactUs' %}"> Contact Us </a>  |  <a href="{% url 'AllData' %}"> FAQ </a> | <button onclick="window.location.href='https://raw.githubusercontent.com/washingtonpost/data-police-shootings/master/fatal-police-shootings-data.csv'">All Data</button>
+    <a href="{% url 'posts' %}"> Comments </a>  |  <a href="{% url 'AllData' %}"> Contact Us </a> | <a href='https://raw.githubusercontent.com/washingtonpost/data-police-shootings/master/fatal-police-shootings-data.csv'>All Data</a>
 
 
 </header>
-
+</body>
+</html>
 {% block content %}
 {% endblock content %}

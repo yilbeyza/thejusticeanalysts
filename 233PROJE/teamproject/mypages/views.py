@@ -1,20 +1,38 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from .models import Posts
 import plotly.graph_objects as go
 import plotly.io as pio
 import pandas as pd
-
-
-from django.views.generic import ListView
-#from .models import Posts
-
 from django.shortcuts import redirect
+from . import forms
+from .models import Messages
+
+def messagevalidate(request):
+    return render(request, "alldata.html")
+
+def message(request):
+    if request.method == " GET":
+        return redirect('/')
+
+    if request.method == "POST":
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        phone = request.POST.get("phone")
+        yourmessage = request.POST.get("yourmessage")
+
+        newMessage=Messages(name=name,email=email,phone=phone,yourmessage=yourmessage)
+        newMessage.save()
+        return redirect('/')
+        """if form.is_valid():
+            form.save(commit=True)
+            return messagevalidate(request)
+
+        else:
+            print('Invalid Message!')"""
 
 
-# Create your views here.
 
-"""class HomepageView(TemplateView):
-    template_name = 'home.html'"""
 def index(request):
 
 
@@ -76,10 +94,27 @@ def index(request):
     return render(request, "home.html", {"usaMap": usaMap})
 
 
-class ContactUsView(TemplateView):
-    template_name = 'posts.html'
-    #model = Posts
-    #context_object_name='all_posts_list'
-
 class AllDataView(TemplateView):
     template_name = 'alldata.html'
+
+def comment(request):
+    return render(request, "posts.html")
+
+def review(request):
+   form = forms.FormName()
+
+   if request.method == 'POST':
+    form = forms.FormName(request.POST)
+
+    if form.is_valid():
+
+        print("VALIDATION SUCCESS!")
+        print("E-MAİL"+form.cleaned_data['email'])
+        print("NAME" + form.cleaned_data['name'])
+        print("TEXT" + form.cleaned_data['text'])
+
+
+   return render(request, "posts.html", {'form':form})
+
+
+

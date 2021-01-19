@@ -15,9 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import url
+#from  mypages import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mypages.urls')),
     path('posts/', include('mypages.urls')),
+    #path('alldata/', views.message, name="message")
 ]
